@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>琵琶湖のほとりの庭 | 四季のガーデニング</title>
+  <meta name="description" content="琵琶湖のほとりで四季折々の植物を育てる庭の紹介、植物図鑑、月別の作業カレンダー。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">❀</span>
+        <span class="brand-name">琵琶湖のほとりの庭</span>
+      </a>
+      <nav class="nav">
+        <a href="#about">庭の紹介</a>
+        <a href="#plants">植物図鑑</a>
+        <a href="#calendar">作業カレンダー</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Slideshow -->
+    <section class="hero" aria-label="四季のスライドショー">
+      <div class="slides">
+        <div class="slide slide-spring active" role="img" aria-label="春の庭">
+          <div class="slide-content">
+            <p class="slide-season">Spring</p>
+            <h1 class="slide-title">春、芽吹きのしらべ</h1>
+            <p class="slide-copy">湖風にそよぐ若葉と、桜色のささやき。</p>
+          </div>
+        </div>
+        <div class="slide slide-summer" role="img" aria-label="夏の庭">
+          <div class="slide-content">
+            <p class="slide-season">Summer</p>
+            <h1 class="slide-title">夏、みなもの青に囲まれて</h1>
+            <p class="slide-copy">深まる緑と、湖面を渡る涼やかな風。</p>
+          </div>
+        </div>
+        <div class="slide slide-autumn" role="img" aria-label="秋の庭">
+          <div class="slide-content">
+            <p class="slide-season">Autumn</p>
+            <h1 class="slide-title">秋、実りのひととき</h1>
+            <p class="slide-copy">紅葉に染まる湖畔、静かな実りの季節。</p>
+          </div>
+        </div>
+      </div>
+      <div class="dots" role="tablist" aria-label="スライド切り替え">
+        <button class="dot active" type="button" role="tab" aria-label="春のスライド" data-index="0"></button>
+        <button class="dot" type="button" role="tab" aria-label="夏のスライド" data-index="1"></button>
+        <button class="dot" type="button" role="tab" aria-label="秋のスライド" data-index="2"></button>
+      </div>
+    </section>
+
+    <!-- Garden Intro -->
+    <section class="about" id="about">
+      <div class="container about-inner">
+        <div class="about-text">
+          <p class="eyebrow">About the Garden</p>
+          <h2>琵琶湖のほとりで育てる、<br />四季の庭</h2>
+          <p>
+            湖面を渡るやわらかな風と、湿りを帯びた豊かな土。琵琶湖のほとりは、植物たちがのびやかに育つ小さな楽園です。
+            春の芽吹きから夏の深緑、秋の紅葉まで、季節ごとに表情を変える庭を、ゆっくりと手入れしながら育てています。
+          </p>
+          <p>
+            朝霧にぬれた葉、水鳥の声、夕暮れに色を変える湖面 ― 暮らしのすぐそばに自然がある、そんな庭づくりを大切にしています。
+            季節の花や実りを楽しみながら、訪れる人にもほっとひと息ついていただける場所でありたいと願っています。
+          </p>
+          <p>
+            このページでは、庭で育てている植物たちと、毎月の庭しごとの記録をご紹介します。
+          </p>
+        </div>
+        <div class="about-art" aria-hidden="true">
+          <div class="art-layer art-layer-1"></div>
+          <div class="art-layer art-layer-2"></div>
+          <div class="art-layer art-layer-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plant Encyclopedia Preview -->
+    <section class="plants" id="plants">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Plant Encyclopedia</p>
+          <h2>植物図鑑プレビュー</h2>
+          <p class="lead">庭で出会える、お気に入りの植物たち。</p>
+        </header>
+        <div class="plant-grid">
+          <article class="plant-card">
+            <div class="plant-thumb thumb-hydrangea" aria-hidden="true"></div>
+            <div class="plant-body">
+              <h3>アジサイ</h3>
+              <p class="sci">Hydrangea macrophylla</p>
+              <p>梅雨どきに咲きほこる、湖畔の湿度を愛する花。土の性質で青にも桃色にも。</p>
+            </div>
+          </article>
+          <article class="plant-card">
+            <div class="plant-thumb thumb-lavender" aria-hidden="true"></div>
+            <div class="plant-body">
+              <h3>ラベンダー</h3>
+              <p class="sci">Lavandula angustifolia</p>
+              <p>初夏の風にのせる、やさしい香り。日当たりと乾いた土を好みます。</p>
+            </div>
+          </article>
+          <article class="plant-card">
+            <div class="plant-thumb thumb-rosemary" aria-hidden="true"></div>
+            <div class="plant-body">
+              <h3>ローズマリー</h3>
+              <p class="sci">Salvia rosmarinus</p>
+              <p>一年を通して青々と。料理にもつかえる、頼れる常緑のハーブ。</p>
+            </div>
+          </article>
+          <article class="plant-card">
+            <div class="plant-thumb thumb-himeshara" aria-hidden="true"></div>
+            <div class="plant-body">
+              <h3>ヒメシャラ</h3>
+              <p class="sci">Stewartia monadelpha</p>
+              <p>すべらかな木肌と、初夏の白い小花。秋には紅葉が湖畔を彩ります。</p>
+            </div>
+          </article>
+          <article class="plant-card">
+            <div class="plant-thumb thumb-hosta" aria-hidden="true"></div>
+            <div class="plant-body">
+              <h3>ギボウシ</h3>
+              <p class="sci">Hosta</p>
+              <p>しっとりとした半日陰で輝く大きな葉。夏に涼やかな淡紫の花を咲かせます。</p>
+            </div>
+          </article>
+          <article class="plant-card">
+            <div class="plant-thumb thumb-hellebore" aria-hidden="true"></div>
+            <div class="plant-body">
+              <h3>クリスマスローズ</h3>
+              <p class="sci">Helleborus</p>
+              <p>寒さのなかで咲く、うつむきがちの花。冬の庭にそっと彩りを添えてくれます。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Monthly Calendar -->
+    <section class="calendar" id="calendar">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Monthly Calendar</p>
+          <h2>月別 作業カレンダー</h2>
+          <p class="lead">湖畔の気候に合わせた、12か月の庭しごと。</p>
+        </header>
+        <div class="month-grid">
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">1</span><span class="month-label">January</span></div>
+            <p class="month-jp">睦月</p>
+            <ul>
+              <li>寒肥（かんごえ）を施す</li>
+              <li>落葉樹の剪定</li>
+              <li>防寒対策の点検</li>
+              <li>道具の手入れ</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">2</span><span class="month-label">February</span></div>
+            <p class="month-jp">如月</p>
+            <ul>
+              <li>バラの剪定と誘引</li>
+              <li>春の花壇の計画</li>
+              <li>土づくり・堆肥づくり</li>
+              <li>果樹の寒肥</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">3</span><span class="month-label">March</span></div>
+            <p class="month-jp">弥生</p>
+            <ul>
+              <li>春まきの種まき</li>
+              <li>夏の球根の植え付け</li>
+              <li>雑草除去と追肥</li>
+              <li>芝生の目土入れ</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">4</span><span class="month-label">April</span></div>
+            <p class="month-jp">卯月</p>
+            <ul>
+              <li>苗の植え付け</li>
+              <li>支柱立て・誘引</li>
+              <li>追肥と水やり管理</li>
+              <li>芝生の手入れ開始</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">5</span><span class="month-label">May</span></div>
+            <p class="month-jp">皐月</p>
+            <ul>
+              <li>バラの開花管理</li>
+              <li>挿し木・株分け</li>
+              <li>害虫チェックと対策</li>
+              <li>花がら摘み</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">6</span><span class="month-label">June</span></div>
+            <p class="month-jp">水無月</p>
+            <ul>
+              <li>梅雨時の病気予防</li>
+              <li>紫陽花の手入れ</li>
+              <li>刈り込み・切り戻し</li>
+              <li>湿気対策の風通し確保</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">7</span><span class="month-label">July</span></div>
+            <p class="month-jp">文月</p>
+            <ul>
+              <li>朝夕の水やり強化</li>
+              <li>花がら摘み・摘花</li>
+              <li>夏野菜の収穫</li>
+              <li>日よけ・遮光の準備</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">8</span><span class="month-label">August</span></div>
+            <p class="month-jp">葉月</p>
+            <ul>
+              <li>真夏の遮光</li>
+              <li>切り戻しで秋花を楽しむ</li>
+              <li>秋花壇の計画・準備</li>
+              <li>休眠株の管理</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">9</span><span class="month-label">September</span></div>
+            <p class="month-jp">長月</p>
+            <ul>
+              <li>秋植え球根の準備</li>
+              <li>多年草の株分け</li>
+              <li>秋の追肥</li>
+              <li>台風への備え</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">10</span><span class="month-label">October</span></div>
+            <p class="month-jp">神無月</p>
+            <ul>
+              <li>紅葉を楽しむ手入れ</li>
+              <li>秋バラの剪定</li>
+              <li>チューリップ球根の植付</li>
+              <li>耐寒性苗の植え付け</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">11</span><span class="month-label">November</span></div>
+            <p class="month-jp">霜月</p>
+            <ul>
+              <li>落ち葉の堆肥化</li>
+              <li>冬支度・マルチング</li>
+              <li>冬花壇の植え込み</li>
+              <li>果樹の収穫</li>
+            </ul>
+          </article>
+          <article class="month-card">
+            <div class="month-head"><span class="month-num">12</span><span class="month-label">December</span></div>
+            <p class="month-jp">師走</p>
+            <ul>
+              <li>寒さ対策・霜よけ</li>
+              <li>道具の手入れと収納</li>
+              <li>来年の庭づくりを計画</li>
+              <li>剪定・枝の片付け</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">❀ 琵琶湖のほとりの庭</p>
+      <p class="footer-copy">© 琵琶湖畔ガーデン ― 四季とともに、庭とともに。</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -115,8 +115,8 @@ def load_bugyo_excel(excel_path: str) -> pd.DataFrame:
         df = pd.read_excel(excel_path, skiprows=skip)
         df.columns = df.columns.astype(str).str.strip()
         name_col = find_col(df, ["商品名", "品名", "品目", "摘要", "商品コード名"])
-        amt_col  = find_col(df, ["税抜き順仕入れ高", "税抜順仕入高", "税抜仕入高",
-                                  "税抜金額", "仕入金額", "仕入額", "金額", "金額(円)"])
+        amt_col  = find_col(df, ["税抜純仕入高", "税抜き順仕入れ高", "税抜順仕入高",
+                                  "税抜仕入高", "税抜金額", "仕入金額", "仕入額", "金額", "金額(円)"])
         if name_col and amt_col:
             df = df[[name_col, amt_col]].copy()
             df.columns = ["品名", "金額"]

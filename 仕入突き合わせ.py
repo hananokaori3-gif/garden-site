@@ -53,13 +53,13 @@ def extract_from_pdf(pdf_path: str) -> list[dict]:
 
 以下のJSON形式で返してください（余計な説明は不要、JSONのみ）:
 [
-  {"品名": "商品名", "数量": 数値, "金額": 数値},
+  {"品名": "商品名", "金額": 数値},
   ...
 ]
 
 注意:
-- 数量・金額は数値のみ（カンマや円記号は除く）
-- 品名が空白や合計行はスキップ
+- 金額は税抜き金額の数値のみ（カンマや円記号は除く）
+- 品名が空白・合計行・小計行はスキップ
 - 読み取れない場合は空リスト [] を返す"""
 
         message = client.messages.create(
@@ -114,19 +114,18 @@ def load_bugyo_excel(excel_path: str) -> pd.DataFrame:
     for skip in range(0, 10):
         df = pd.read_excel(excel_path, skiprows=skip)
         df.columns = df.columns.astype(str).str.strip()
-        name_col = find_col(df, ["品名", "商品名", "品目", "摘要", "商品コード名"])
-        qty_col  = find_col(df, ["数量", "仕入数量", "qty"])
-        amt_col  = find_col(df, ["金額", "仕入金額", "仕入額", "金額(円)", "税抜金額"])
-        if name_col and qty_col and amt_col:
-            df = df[[name_col, qty_col, amt_col]].copy()
-            df.columns = ["品名", "数量", "金額"]
+        name_col = find_col(df, ["商品名", "品名", "品目", "摘要", "商品コード名"])
+        amt_col  = find_col(df, ["税抜き順仕入れ高", "税抜順仕入高", "税抜仕入高",
+                                  "税抜金額", "仕入金額", "仕入額", "金額", "金額(円)"])
+        if name_col and amt_col:
+            df = df[[name_col, amt_col]].copy()
+            df.columns = ["品名", "金額"]
             df["品名"] = df["品名"].astype(str).str.strip()
             df = df[df["品名"].notna() & (df["品名"] != "") & (df["品名"] != "nan")]
-            df["数量"] = pd.to_numeric(df["数量"], errors="coerce")
             df["金額"] = pd.to_numeric(df["金額"], errors="coerce")
-            return df.dropna(subset=["数量", "金額"])
+            return df.dropna(subset=["金額"])
 
-    print("エラー: Excelに「品名」「数量」「金額」の列が見つかりません。")
+    print("エラー: Excelに「商品名」「税抜き順仕入れ高」の列が見つかりません。")
     print(f"  列名一覧: {list(df.columns)}")
     print("  スクリプト内の find_col() の候補リストに列名を追加してください。")
     sys.exit(1)
@@ -137,9 +136,8 @@ def load_bugyo_excel(excel_path: str) -> pd.DataFrame:
 # ──────────────────────────────────────────
 
 def compare(pdf_items: list[dict], excel_df: pd.DataFrame):
-    pdf_df = pd.DataFrame(pdf_items)[["品名", "数量", "金額"]].copy()
+    pdf_df = pd.DataFrame(pdf_items)[["品名", "金額"]].copy()
     pdf_df["品名"] = pdf_df["品名"].astype(str).str.strip()
-    pdf_df["数量"] = pd.to_numeric(pdf_df["数量"], errors="coerce")
     pdf_df["金額"] = pd.to_numeric(pdf_df["金額"], errors="coerce")
 
     merged = pd.merge(pdf_df, excel_df, on="品名", how="outer",
@@ -147,32 +145,21 @@ def compare(pdf_items: list[dict], excel_df: pd.DataFrame):
 
     issues = []
     for _, row in merged.iterrows():
-        name = row["品名"]
-        qty_p = row.get("数量_伝票")
-        qty_e = row.get("数量_奉行")
+        name  = row["品名"]
         amt_p = row.get("金額_伝票")
         amt_e = row.get("金額_奉行")
 
-        missing_p = pd.isna(qty_p) and pd.isna(amt_p)
-        missing_e = pd.isna(qty_e) and pd.isna(amt_e)
-
-        if missing_p:
+        if pd.isna(amt_p):
             issues.append({"品名": name, "種別": "奉行のみ（伝票に未記載？）",
-                            "数量_伝票": "-", "数量_奉行": qty_e,
                             "金額_伝票": "-", "金額_奉行": amt_e, "差額": ""})
-        elif missing_e:
+        elif pd.isna(amt_e):
             issues.append({"品名": name, "種別": "伝票のみ（奉行に未入力）",
-                            "数量_伝票": qty_p, "数量_奉行": "-",
                             "金額_伝票": amt_p, "金額_奉行": "-", "差額": ""})
-        else:
-            diff_qty = not pd.isna(qty_p) and not pd.isna(qty_e) and qty_p != qty_e
-            diff_amt = not pd.isna(amt_p) and not pd.isna(amt_e) and abs(amt_p - amt_e) > 1
-            if diff_qty or diff_amt:
-                diff = (amt_p or 0) - (amt_e or 0)
-                issues.append({"品名": name, "種別": "金額または数量が不一致",
-                                "数量_伝票": qty_p, "数量_奉行": qty_e,
-                                "金額_伝票": amt_p, "金額_奉行": amt_e,
-                                "差額": f"{diff:+,.0f}"})
+        elif abs(amt_p - amt_e) > 1:
+            diff = amt_p - amt_e
+            issues.append({"品名": name, "種別": "金額が不一致",
+                            "金額_伝票": amt_p, "金額_奉行": amt_e,
+                            "差額": f"{diff:+,.0f}"})
 
     total_p = pdf_df["金額"].sum()
     total_e = excel_df["金額"].sum()
@@ -193,7 +180,6 @@ def compare(pdf_items: list[dict], excel_df: pd.DataFrame):
         for i, iss in enumerate(issues, 1):
             print(f"  [{i}] {iss['種別']}")
             print(f"       品名:  {iss['品名']}")
-            print(f"       数量:  伝票={iss['数量_伝票']}  /  奉行={iss['数量_奉行']}")
             print(f"       金額:  伝票={iss['金額_伝票']}  /  奉行={iss['金額_奉行']}"
                   + (f"  （差額 {iss['差額']} 円）" if iss['差額'] else ""))
             print()
@@ -201,7 +187,7 @@ def compare(pdf_items: list[dict], excel_df: pd.DataFrame):
     # Excel出力
     out = "突き合わせ結果.xlsx"
     issues_df = pd.DataFrame(issues) if issues else pd.DataFrame(
-        columns=["品名", "種別", "数量_伝票", "数量_奉行", "金額_伝票", "金額_奉行", "差額"])
+        columns=["品名", "種別", "金額_伝票", "金額_奉行", "差額"])
     summary_df = pd.DataFrame([
         {"項目": "仕入伝票（PDF）合計", "金額": total_p, "行数": len(pdf_df)},
         {"項目": "奉行クラウド合計",    "金額": total_e, "行数": len(excel_df)},

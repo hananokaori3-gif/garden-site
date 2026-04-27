@@ -362,6 +362,139 @@ a:hover {
   margin: 0;
 }
 
+/* ===== Garden Diary ===== */
+.diary {
+  padding: 120px 0;
+  background: var(--cream-warm);
+  background-image: linear-gradient(
+    180deg,
+    var(--cream) 0%,
+    var(--cream-warm) 12%,
+    var(--cream-warm) 88%,
+    var(--cream) 100%
+  );
+}
+
+.diary-list {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.diary-entry {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 40px;
+  align-items: start;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.diary-entry:last-child {
+  border-bottom: none;
+}
+
+.diary-entry::before {
+  content: "❀";
+  position: absolute;
+  left: 172px;
+  top: 42px;
+  color: var(--green-moss);
+  font-size: 0.85rem;
+  background: var(--cream-warm);
+  padding: 2px 4px;
+  transform: translateX(50%);
+}
+
+.diary-meta {
+  text-align: right;
+  padding-top: 4px;
+}
+
+.diary-date {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.diary-season {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.diary-season.spring {
+  background: #fce4ec;
+  color: #c2566c;
+}
+
+.diary-season.summer {
+  background: #e0f4ee;
+  color: #2e7a5b;
+}
+
+.diary-season.autumn {
+  background: #fff3e0;
+  color: #b56a1e;
+}
+
+.diary-season.winter {
+  background: #e8eaf6;
+  color: #4050a0;
+}
+
+.diary-body {
+  padding-left: 28px;
+  border-left: 2px solid var(--line);
+}
+
+.diary-title {
+  font-size: 1.15rem;
+  margin: 0 0 0.7em;
+  color: var(--green-dark);
+}
+
+.diary-body p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 2;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .diary-entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .diary-entry::before {
+    display: none;
+  }
+
+  .diary-meta {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .diary-body {
+    padding-left: 0;
+    border-left: none;
+    border-top: 2px solid var(--line);
+    padding-top: 16px;
+  }
+}
+
 /* ===== Plant Encyclopedia ===== */
 .plants {
   padding: 120px 0;

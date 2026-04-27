@@ -470,6 +470,36 @@ a:hover {
   margin: 0;
 }
 
+.diary-photo-wrap {
+  margin: 0 0 1.2em;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.diary-photo {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+  object-fit: cover;
+  max-height: 420px;
+  box-shadow: var(--shadow-sm);
+}
+
+.diary-photo-placeholder {
+  background: linear-gradient(135deg, #e8f1e4 0%, #d0e8c8 100%);
+  border: 2px dashed var(--green-moss);
+  border-radius: var(--radius);
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-deep);
+  font-size: 0.88rem;
+  text-align: center;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+
 @media (max-width: 640px) {
   .diary-entry {
     grid-template-columns: 1fr;

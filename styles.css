@@ -362,6 +362,214 @@ a:hover {
   margin: 0;
 }
 
+/* ===== Garden Chronicle ===== */
+.chronicle {
+  padding: 120px 0 0;
+  background: var(--ink);
+}
+
+.chronicle .section-head {
+  padding-bottom: 72px;
+}
+
+.chronicle .section-head h2,
+.chronicle .section-head .lead {
+  color: #e8f1e4;
+}
+
+.chronicle .eyebrow {
+  color: var(--green-moss);
+}
+
+/* 縦スクロールタイムライン */
+.year-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.year-panel {
+  position: relative;
+  height: 92vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.year-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s var(--ease);
+}
+
+.year-panel:hover .year-bg {
+  transform: scale(1.03);
+}
+
+/* 写真がない間のグラデーションプレースホルダー */
+.year-bg-2018 {
+  background: linear-gradient(160deg, #c8d8b0 0%, #7a9e6a 40%, #3d5e38 100%);
+}
+.year-bg-2020 {
+  background: linear-gradient(160deg, #b8d4c8 0%, #5e9e88 40%, #2a5e4a 100%);
+}
+.year-bg-2022 {
+  background: linear-gradient(160deg, #e8d4b0 0%, #c89a60 40%, #7a5030 100%);
+}
+.year-bg-2025 {
+  background: linear-gradient(160deg, #d0e8c0 0%, #8ab870 40%, #3a6040 100%);
+}
+
+/* 写真を使う場合はこのように上書き */
+/* .year-bg-2018 { background-image: url('images/chronicle/2018-overview.jpg'); } */
+
+.year-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.18) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.year-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 56px 64px;
+  color: #fff;
+}
+
+.year-num {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  opacity: 0.92;
+  margin-bottom: 0.2em;
+}
+
+.year-word {
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  letter-spacing: 0.2em;
+  opacity: 0.88;
+  margin: 0;
+}
+
+/* 横スクロールストリップ */
+.area-section {
+  padding: 80px 24px 100px;
+  background: var(--ink);
+}
+
+.area-title {
+  font-family: "Noto Serif JP", serif;
+  color: #e8f1e4;
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  margin: 0 0 48px;
+  opacity: 0.7;
+}
+
+.area-block {
+  margin-bottom: 56px;
+}
+
+.area-block:last-child {
+  margin-bottom: 0;
+}
+
+.area-label {
+  color: var(--green-moss);
+  font-size: 0.82rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.area-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green-deep) transparent;
+}
+
+.area-strip::-webkit-scrollbar {
+  height: 3px;
+}
+
+.area-strip::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+}
+
+.area-strip::-webkit-scrollbar-thumb {
+  background: var(--green-deep);
+  border-radius: 2px;
+}
+
+.area-frame {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  margin: 0;
+  position: relative;
+}
+
+.area-photo {
+  width: 280px;
+  height: 200px;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* エリア写真プレースホルダー */
+.area-photo-1a { background: linear-gradient(135deg, #c8d8b0, #5a8a50); }
+.area-photo-1b { background: linear-gradient(135deg, #b8c8a0, #486840); }
+.area-photo-1c { background: linear-gradient(135deg, #a8c8a0, #388040); }
+.area-photo-1d { background: linear-gradient(135deg, #a0d090, #28a040); }
+.area-photo-2a { background: linear-gradient(135deg, #d0c8e0, #8870b0); }
+.area-photo-2b { background: linear-gradient(135deg, #c0b8e0, #7060c0); }
+.area-photo-2c { background: linear-gradient(135deg, #b0b8e8, #5060d0); }
+.area-photo-2d { background: linear-gradient(135deg, #a8c0e8, #4870d0); }
+
+.area-frame figcaption {
+  font-family: "Noto Serif JP", serif;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .year-overlay {
+    padding: 36px 28px;
+  }
+
+  .area-frame {
+    flex: 0 0 220px;
+  }
+
+  .area-photo {
+    width: 220px;
+    height: 160px;
+  }
+}
+
 /* ===== Garden Diary ===== */
 .diary {
   padding: 120px 0;
